@@ -1,10 +1,6 @@
-#from OpenGL.GLUT import glutInit,glutInitDisplayMode,\
-#GLUT_DEPTH,GLUT_DOUBLE,GLUT_RGBA,glutInitWindowPosition
 from OpenGL.GLUT import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
-
-x, y, z = 0, 1, 5
 
 def changeSize(w, h):
 	ratio =  w / h
@@ -74,6 +70,7 @@ def renderScene():
 			   
 	glutSwapBuffers()
 
+x, y, z = 0, 1, 5
 w = 320
 x1 = 100
 glutInit([])
