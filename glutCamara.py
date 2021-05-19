@@ -73,6 +73,10 @@ def computePos(deltaMove):
 	z += deltaMove * lz / 10
 
 def renderScene():
+	'''aqui si'''
+	global deltaMove
+	deltaMove += 0.0005
+
 	if deltaMove:
 		computePos(deltaMove)
 		#print(deltaMove)
@@ -88,7 +92,7 @@ def renderScene():
 			  x + lx, 1, z + lz,
 			  0,      1, 0)
 
-	print("gluLookAt(x = "+str(x)+")")
+	#print("gluLookAt(x = "+str(x)+")")
 
 	# Draw ground
 	glColor3f(0.9, 0.9, 0.9)
@@ -108,8 +112,6 @@ def renderScene():
 			glPopMatrix()
 			   
 	glutSwapBuffers()
-
-	#print("renderizado")
  
 def processNormalKeys(key, x, y):	
 	if (key == 27):
@@ -164,7 +166,7 @@ glutInit([])
 glutInitDisplayMode(GLUT_DEPTH + GLUT_DOUBLE + GLUT_RGBA)
 glutInitWindowPosition(100, 100)
 glutInitWindowSize(320, 320)
-glutCreateWindow("Lighthouse3D - GLUT Tutorial")
+glutCreateWindow("")
 
 # register callbacks
 glutDisplayFunc(renderScene)
@@ -177,8 +179,8 @@ glutSpecialFunc(pressKey)
 glutSpecialUpFunc(releaseKey)
 
 # here are the two new functions
-glutMouseFunc(mouseButton)
-glutMotionFunc(mouseMove)
+#glutMouseFunc(mouseButton)
+#glutMotionFunc(mouseMove)
 
 # OpenGL init
 glEnable(GL_DEPTH_TEST)
