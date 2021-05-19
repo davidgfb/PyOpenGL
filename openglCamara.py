@@ -1,25 +1,27 @@
 from pygame.display import set_mode
-from pygame.locals import DOUBLEBUF,OPENGL
-from pygame.mouse import set_pos
-from pygame.event import get
-from pygame.key import get_pressed
-from pygame.time import wait
+from pygame.locals  import DOUBLEBUF,OPENGL
+from pygame.mouse   import set_pos
+from pygame.event   import get
+from pygame.key     import get_pressed
+from pygame.time    import wait
 from pygame.display import flip
-from pygame import quit,init,QUIT,KEYDOWN,K_ESCAPE,K_RETURN,\
-     K_PAUSE,K_p,MOUSEMOTION,K_w,K_s,K_d,K_a
+from pygame         import quit,init,QUIT,KEYDOWN,\
+K_ESCAPE,K_RETURN,K_PAUSE,K_p,MOUSEMOTION,K_w,K_s,\
+K_d,K_a
 
-from OpenGL.GL import glEnable,GL_DEPTH_TEST,GL_LIGHTING,\
-     glShadeModel,GL_SMOOTH,GL_COLOR_MATERIAL,glColorMaterial,\
-     GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,GL_LIGHT0,\
-     glLightfv,GL_AMBIENT,GL_DIFFUSE,glMatrixMode,\
-     GL_PROJECTION,GL_MODELVIEW,glGetFloatv,GL_MODELVIEW_MATRIX,\
-     glLoadIdentity,glRotatef,glPushMatrix,glMultMatrixf,\
-     glPopMatrix,GL_POSITION,glClear,GL_COLOR_BUFFER_BIT,\
-     GL_DEPTH_BUFFER_BIT,glColor4f,glBegin,GL_QUADS,glVertex3f,\
-     glEnd,glTranslatef
+from OpenGL.GL import glEnable,GL_DEPTH_TEST,\
+GL_LIGHTING,glShadeModel,GL_SMOOTH,GL_COLOR_MATERIAL,\
+glColorMaterial,GL_FRONT_AND_BACK,\
+GL_AMBIENT_AND_DIFFUSE,GL_LIGHT0,glLightfv,\
+GL_AMBIENT,GL_DIFFUSE,glMatrixMode,GL_PROJECTION,\
+GL_MODELVIEW,glGetFloatv,GL_MODELVIEW_MATRIX,\
+glLoadIdentity,glRotatef,glPushMatrix,glMultMatrixf,\
+glPopMatrix,GL_POSITION,glClear,GL_COLOR_BUFFER_BIT,\
+GL_DEPTH_BUFFER_BIT,glColor4f,glBegin,GL_QUADS,\
+glVertex3f,glEnd,glTranslatef
 
-from OpenGL.GLU import gluNewQuadric,gluPerspective,gluLookAt,\
-     gluSphere
+from OpenGL.GLU import gluNewQuadric,gluPerspective,\
+gluLookAt,gluSphere
 
 init()
 display = (400, 300)
@@ -29,7 +31,8 @@ glEnable(GL_DEPTH_TEST)
 glEnable(GL_LIGHTING)
 glShadeModel(GL_SMOOTH)
 glEnable(GL_COLOR_MATERIAL)
-glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE)
+glColorMaterial(GL_FRONT_AND_BACK, \
+    GL_AMBIENT_AND_DIFFUSE)
 
 glEnable (GL_LIGHT0)
 glLightfv(GL_LIGHT0, GL_AMBIENT, [0.5, 0.5, 0.5, 1])
