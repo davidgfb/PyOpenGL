@@ -67,19 +67,20 @@ def drawSnowMan():
 	glRotatef(0, 1, 0, 0)
 	glutSolidCone(0.08, 0.5, 10, 2)
 
+y, ly = 1, 0
+
 def computePos(deltaMove):
-	global x, z
-	x += deltaMove * lx / 10
-	z += deltaMove * lz / 10
+	global x, y, z # no hay y
+	#x += deltaMove / 10 * lx 
+	y += deltaMove / 10 * ly 
+	#z += deltaMove / 10 * lz 
+
+cx,cy,cz = 0,0,0
 
 def renderScene():
 	'''aqui si'''
-	global deltaMove
-	deltaMove += 0.0005
-
-	if deltaMove:
-		computePos(deltaMove)
-		#print(deltaMove)
+	global y
+	y += 0.005
 
 	# Clear Color and Depth Buffers
 	glClear(GL_COLOR_BUFFER_BIT + GL_DEPTH_BUFFER_BIT)
@@ -88,9 +89,9 @@ def renderScene():
 	glLoadIdentity()
 	
 	# Set the camera
-	gluLookAt(x,      1, z,
-			  x + lx, 1, z + lz,
-			  0,      1, 0)
+	gluLookAt(x,      y, 	  z,
+			  cx, cy, cz, 
+			  0,      1, 	  0)
 
 	#print("gluLookAt(x = "+str(x)+")")
 
