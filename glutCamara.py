@@ -1,4 +1,8 @@
-
+#from OpenGL.GLUT import glutInit,glutInitDisplayMode,\
+#GLUT_DEPTH,GLUT_DOUBLE,GLUT_RGBA,glutInitWindowPosition
+from OpenGL.GLUT import *
+from OpenGL.GL import *
+from OpenGL.GLU import *
 
 # angle of rotation for the camera direction
 angle = 0
@@ -64,12 +68,14 @@ def drawSnowMan():
 	glutSolidCone(0.08, 0.5, 10, 2)
 
 def computePos(deltaMove):
-	x += deltaMove * lx * 0.1
-	z += deltaMove * lz * 0.1
+	global x, z
+	x += deltaMove * lx / 10
+	z += deltaMove * lz / 10
 
 def renderScene():
-	if (deltaMove):
+	if deltaMove:
 		computePos(deltaMove)
+		#print(deltaMove)
 
 	# Clear Color and Depth Buffers
 	glClear(GL_COLOR_BUFFER_BIT + GL_DEPTH_BUFFER_BIT)
@@ -81,6 +87,8 @@ def renderScene():
 	gluLookAt(x,      1, z,
 			  x + lx, 1, z + lz,
 			  0,      1, 0)
+
+	print("gluLookAt(x = "+str(x)+")")
 
 	# Draw ground
 	glColor3f(0.9, 0.9, 0.9)
@@ -99,54 +107,56 @@ def renderScene():
 			drawSnowMan()
 			glPopMatrix()
 			   
-		glutSwapBuffers()
+	glutSwapBuffers()
+
+	#print("renderizado")
  
+def processNormalKeys(key, x, y):	
+	if (key == 27):
+		exit(0)
 
-def processNormalKeys(key, xx, yy):	
-		if (key == 27):
-			  exit(0)
+def pressKey(key, x, y):
+	global deltaMove
+	#if key == GLUT_KEY_UP: 
+	deltaMove += 0.5 
 
-def pressKey(key, xx, yy):
-	if key == GLUT_KEY_UP: 
-		deltaMove = 0.5 
-		#break
-
-	elif key == GLUT_KEY_DOWN: 
-		deltaMove = -0.5 
-		#break
+	#elif key == GLUT_KEY_DOWN: 
+	#	deltaMove = -0.5 
 	
 def releaseKey(key, x, y): 	
-	if key == GLUT_KEY_DOWN: 
-		deltaMove = 0
+	#if key == GLUT_KEY_DOWN: 
+	#deltaMove = 0
+	pass
 		
-def mouseMove(x, y): 	
-	# this will only be true when the left button is down
-	if (xOrigin >= 0):
-		# update deltaAngle
-		deltaAngle = (x - xOrigin) / 1000
+from math import sin,cos
 
-		# update camera's direction
-		lx = sin(angle + deltaAngle)
-		lz = -cos(angle + deltaAngle)
+def mouseMove(x, y): 	
+	global deltaAngle, lx, lz
+	# this will only be true when the left button is down
+	#if (xOrigin >= 0):
+	# update deltaAngle
+	deltaAngle = x - xOrigin # / 1000
+
+	# update camera's direction
+	lx =  sin(angle + deltaAngle)
+	lz = -cos(angle + deltaAngle) # ly?
+
+	#print("deltaAngle = " + str(deltaAngle) + \
+	#	", lx = " + str(lx) + ", lz = " + str(lz))
 
 def mouseButton(button, state, x, y):
 	global angle
 	# only start motion if the left button is pressed
-	if button == GLUT_LEFT_BUTTON:
-		# when the button is released
-		if state == GLUT_UP:
-			angle += deltaAngle
-			xOrigin = -1
+	#if button == GLUT_LEFT_BUTTON:
+	# when the button is released
+	#if state == GLUT_LEFT_BUTTON: #GLUT_UP:
+	angle += deltaAngle
+	xOrigin = -1
 		
-		else:  # state = GLUT_DOWN
-			xOrigin = x
+	#else:  # state = GLUT_DOWN
+	#	xOrigin = x
 		
 
-#from OpenGL.GLUT import glutInit,glutInitDisplayMode,\
-#GLUT_DEPTH,GLUT_DOUBLE,GLUT_RGBA,glutInitWindowPosition
-from OpenGL.GLUT import *
-from OpenGL.GL import *
-from OpenGL.GLU import *
 
 # init GLUT and create window
 #glutInit(&argc, argv)
